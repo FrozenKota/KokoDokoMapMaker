@@ -296,7 +296,7 @@ const App = () => {
     return(
         <View style={styles.mainContainer}>
             <View style={styles.titleLayout}>
-                <Text style={styles.titleName}>ココドコマップメーカー(β)</Text>
+                <Text style={styles.titleName}>ココドコマップメーカー</Text>
             </View>
 
             <View style={styles.selectButtonLayout}>
