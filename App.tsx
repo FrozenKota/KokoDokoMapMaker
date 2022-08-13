@@ -5,9 +5,9 @@ import MapEditor from './components/MapEditor/MapEditor';
 import StorageControl from './components/StorageControl';
 import Images from './Asset/asset';
 import {storage} from './Storage';
+import MyAdmob from './components/MyAdmob';
 //import { loadOptions } from '@babel/core';
 //import { exit, exitCode } from 'process';
-
 
 const { width, height} = Dimensions.get('window');
 const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
@@ -19,6 +19,7 @@ const App = () => {
     const [ storageControlOption, setStorageControlOption ] = useState("");
     const [ mapEditorIsOpen, setMapEditorIsOpen ] = useState(false);
 
+    // セーブデータ　テーブル
     const [ imgObj, setImgObj ] = useState<{
         fileName: string,
         initStatus: {
@@ -300,8 +301,10 @@ const App = () => {
             </View>
 
             <View style={styles.selectButtonLayout}>
+                <View></View>
                 <MenuButton title={' はじめる '} handler={() => {storageControlHandler({option: "new"})}}/>
                 <MenuButton title={' つづける '} handler={() => {storageControlHandler({option: "edit"})}} />
+                <View><MyAdmob /></View>
                 {false && (<MenuButton title={' G A L L E R Y '} handler={() => {storageControlHandler({option: "gallery"})}} /> /*実装中*/ )}  
             </View>
 
