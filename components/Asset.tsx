@@ -1,6 +1,7 @@
 import React from 'react';
 import Images from '../Asset/asset';
 import { Dimensions, StatusBar, StyleSheet, View, TouchableOpacity, ScrollView, Image} from 'react-native';
+import MyAdmob from '../components/MyAdmob'
 
 const { width, height } = Dimensions.get('window');
 const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
@@ -14,6 +15,13 @@ const AssetWindow = (props :any) => {
     const IMG_KEYS: any = Object.keys(Images);
 
     for(let i = 0; i < IMG_KEYS.length; i+=6){
+        if(i % 36 == 0 && i != 0) {
+            data.push(
+                <View>
+                    <MyAdmob />
+                </View>
+            )
+        }
         data.push(
             <View key={i*7+0} style={{flex:1, flexDirection: 'row'}}>
                 <TouchableOpacity  key={i*7+1} style={{width: width/rowNum, height: width/rowNum}} onPress={() => closeAssetHandler(IMG_KEYS[i])}>
