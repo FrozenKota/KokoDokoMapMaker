@@ -28,6 +28,7 @@ const MapEditor = memo((props: any) => {
   const [ regionTemp, setRegionTemp] = useState({region:{}});
   const [ locationIsSelected, setLocationIsSelected ] = useState(imgObj.initStatus.location);
   const [ divNumIsSelected, setDivNumIsSelected ] = useState(imgObj.initStatus.divNum);
+  const [ selectedLayerIs, setSelectedLayerIs ] = useState(1); // 1:top, 2:bottom
 
   // Components display statment
   const [ mapIsOpen, setMapIsOpen ] = useState(true);
@@ -105,6 +106,11 @@ const MapEditor = memo((props: any) => {
     setZoomIsEnabled(previous => !previous);
   }
 
+  const toggleSelectedLayer = () => {
+    if(selectedLayerIs == 1) setSelectedLayerIs(2);
+    else setSelectedLayerIs(1);
+  }
+
   const onRegionChange = useCallback((region: any) => {
     console.log("onRegionChange");
     const tmp = regionTemp;
@@ -160,6 +166,8 @@ const MapEditor = memo((props: any) => {
           closeMapEditorHandler = {closeMapEditorHandler1} 
           toggleGridLineIsOpen={toggleGridLineIsOpen}
           gridLineIsOpen={gridLineIsOpen}
+          toggleSelectedLayer={toggleSelectedLayer}
+          selectedLayerIs={selectedLayerIs}
         />
       )}
 
