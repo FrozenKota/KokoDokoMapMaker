@@ -7,7 +7,7 @@ const HEIGHT = height - STATUSBAR_HEIGHT;
 
 
 const SideBar = memo((props:any) => {
-    const {closeMapEditorHandler, toggleGridLineIsOpen, gridLineIsOpen} = props;
+    const {closeMapEditorHandler, toggleGridLineIsOpen, gridLineIsOpen, toggleSelectedLayer, selectedLayerIs} = props;
 
     const [isEnabled, setIsEnabled]  = useState(true);
     const toggleSwitch = () => {
@@ -41,6 +41,14 @@ const SideBar = memo((props:any) => {
                         thumbColor={isEnabled ? "#0000ff" : "#f4f3f4"}
                         onValueChange={toggleSwitch}
                         value={gridLineIsOpen}
+                        style={styles.switch1}
+                    />
+                    <Text style={styles.contentTitle}>下地レイヤ編集</Text>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        thumbColor={isEnabled ? "#0000ff" : "#f4f3f4"}
+                        onValueChange={toggleSelectedLayer}
+                        value={selectedLayerIs==1 ? false : true}
                         style={styles.switch1}
                     />
                 </ScrollView>
