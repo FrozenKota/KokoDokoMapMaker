@@ -23,7 +23,7 @@ const AssetWindow = (props :any) => {
                     <MyAdmob />
                 </View>
             )
-        
+
         data.push(
             <View key={i*2+1} style={{flex:1, flexDirection: 'row'}}>
                 <TouchableOpacity  style={{width: width/rowNum, height: width/rowNum}} onPress={() => closeAssetHandler(IMG_KEYS[i*COL_ASSET_NUM+0])}>
@@ -80,7 +80,6 @@ const AssetWindow = (props :any) => {
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     assetView: {

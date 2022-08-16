@@ -25,7 +25,7 @@ const MapEditor = memo((props: any) => {
   const [ vertical, setVertical] = useState(0);
   const [ horizontal, setHorizontal] = useState(0);
   const [ currentImageTag, setCurrentImageTag] = useState("");
-  const [ regionTemp, setRegionTemp] = useState({region:{}});
+  const [ regionTemp, setRegionTemp] = useState(imgObj.region);
   const [ locationIsSelected, setLocationIsSelected ] = useState(imgObj.initStatus.location);
   const [ divNumIsSelected, setDivNumIsSelected ] = useState(imgObj.initStatus.divNum);
   const [ selectedLayerIs, setSelectedLayerIs ] = useState(1); // 1:top, 2:bottom
