@@ -76,9 +76,6 @@ const App = () => {
             latitudeDelta: 19.31312361327316,
             longitudeDelta: 0.05 * (width / height),
         };
-
-        console.log("setImgObj.");
-        setImgObj(tmpObj);
     }
 
     // S1, S2, S3
