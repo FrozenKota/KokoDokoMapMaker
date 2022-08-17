@@ -63,4 +63,4 @@ buck-out/
 /vendor/bundle/
 
 # gradle
-./android/gradle.properties
+gradle.properties
