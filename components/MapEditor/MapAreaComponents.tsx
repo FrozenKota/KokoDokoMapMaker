@@ -20,6 +20,7 @@ const MapAreaComponents = (props: {initialRegion: any, onRegionChange:any, mapTy
             initialRegion={initialRegion}
             onRegionChangeComplete={onRegionChange}
             scrollEnabled={scrollIsEnabled}
+            rotateEnabled={false}
             zoomEnabled={zoomIsEnabled}
           >
           </MapView>
