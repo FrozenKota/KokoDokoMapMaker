@@ -52,7 +52,7 @@ const App = () => {
         },
         imgData: {
             xy00:{PosX: 0, PosY: 0, imgName: 'Asset0_1'},
-            xy01:{PosX: 0, PosY: 0, imgName: 'Asset0_2'}
+            xy01:{PosX: 0, PosY: 1, layer: 2, imgName: 'Asset0_1'},
         },
     })
     const [ eventManager, setEventManager ] = useState({fileName:"", option:""});
@@ -231,19 +231,19 @@ const App = () => {
     }
 
     const addNewImgData = (imgData: any) => {
-        const {PosX, PosY, imgName} = imgData;
+        const {PosX, PosY, imgName, layer} = imgData;
 
         const tmpObj: any = imgObj;
-        tmpObj.imgData['xy'+String(PosX)+String(PosY)] = {PosX: PosX, PosY: PosY, imgName: imgName}
+        tmpObj.imgData['xy'+String(PosX)+String(PosY)+String(layer)] = {PosX: PosX, PosY: PosY, layer: layer, imgName: imgName}
         console.log("setImgObj.");
         setImgObj(tmpObj);
     }
 
     const deleteImgData = (imgData: any) => {
-        const {PosX, PosY} = imgData;
+        const {PosX, PosY, layer} = imgData;
 
         const tmpImgObj: any = imgObj;
-        delete tmpImgObj.imgData['xy'+String(PosX)+String(PosY)];
+        delete tmpImgObj.imgData['xy'+String(PosX)+String(PosY)+String(layer)];
         console.log("setImgObj.");
         setImgObj(tmpImgObj);
     }

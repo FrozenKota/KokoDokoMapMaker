@@ -24,7 +24,8 @@ const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const ImgDataView = (props: any) => {
   const {imgObj} = props;
-  const items: any = [];
+  const items_l1: any = [];
+  const items_l2: any = [];
 
   console.log("ImgDataView.tsx");
 
@@ -33,30 +34,53 @@ const ImgDataView = (props: any) => {
   const keys = Object.keys(imgObj.imgData);
 
   keys.map((value: any, index: number)=>{
-    items.push(
-      <View key={"view"+index} style={{
-        position: 'absolute',
-        top: imgObj.imgData[keys[index]].PosY * divX,
-        left: imgObj.imgData[keys[index]].PosX * divY,
-        width: width / imgObj.divNumX, 
-        height: (height*0.7) / imgObj.divNumX,
-        opacity: 1.0,
-      }}>
-      <Image key={"img"+index}
-        style={{
-          resizeMode: 'stretch',
-          width: divX,
-          height: divY,
-        }}
-        source={Images[imgObj.imgData[keys[index]].imgName]}
-      />
-      </View>
-    )
+    if(imgObj.imgData[keys[index]].layer === 1){
+      items_l1.push(
+        <View key={"view"+index} style={{
+          position: 'absolute',
+          top: imgObj.imgData[keys[index]].PosY * divX,
+          left: imgObj.imgData[keys[index]].PosX * divY,
+          width: width / imgObj.divNumX, 
+          height: (height*0.7) / imgObj.divNumX,
+          opacity: 1.0,
+        }}>
+        <Image key={"img"+index}
+          style={{
+            resizeMode: 'stretch',
+            width: divX,
+            height: divY,
+          }}
+          source={Images[imgObj.imgData[keys[index]].imgName]}
+        />
+        </View>
+      )
+    }else{
+      items_l2.push(
+        <View key={"view"+index} style={{
+          position: 'absolute',
+          top: imgObj.imgData[keys[index]].PosY * divX,
+          left: imgObj.imgData[keys[index]].PosX * divY,
+          width: width / imgObj.divNumX, 
+          height: (height*0.7) / imgObj.divNumX,
+          opacity: 1.0,
+        }}>
+        <Image key={"img"+index}
+          style={{
+            resizeMode: 'stretch',
+            width: divX,
+            height: divY,
+          }}
+          source={Images[imgObj.imgData[keys[index]].imgName]}
+        />
+        </View>
+      )
+    }
   })
 
   return (
     <View style={styles.iOverlay}>
-      {items}
+      {items_l2}
+      {items_l1}
     </View>
   );
 }

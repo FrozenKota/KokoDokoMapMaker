@@ -145,7 +145,7 @@ const MapEditor = memo((props: any) => {
       <TopAreaComponents fileName={imgObj.fileName} initStatus={imgObj.initStatus} countup={upDivNum} countdown={downDivNum} closeHandler={closeMapEditorHandler1} closeSideBar = {closeSideBarHandler} saveData={saveData} />
       <MapAreaComponents initialRegion={imgObj.region} mapType={"satellite"} mapIsOpen={mapIsOpen} onRegionChange={(e:any) => onRegionChange(e)} scrollIsEnabled={scrollIsEnabled} zoomIsEnabled={zoomIsEnabled} />
       <SelectButton assetSelectHandler={assetSelectHandler} initStatus={imgObj.initStatus} enableEditMode={enableEditMode} onRegionSelect={onRegionSelect} onDivNumSelect={onDivNumSelect} />
-      <BottomAreaComponents addData={addData} deleteData={deleteData} moveLeft={moveLeft} moveDown={moveDown} moveUp={moveUp} moveRight={moveRight} horizontal={horizontal} vertical={vertical} currentImageTag={currentImageTag}/>
+      <BottomAreaComponents addData={addData} deleteData={deleteData} moveLeft={moveLeft} moveDown={moveDown} moveUp={moveUp} moveRight={moveRight} horizontal={horizontal} vertical={vertical} currentImageTag={currentImageTag} selectedLayer={selectedLayerIs}/>
 
       { ((!imgObj.initStatus.location && imgObj.initStatus.divNum) ||
         (!imgObj.initStatus.location && !imgObj.initStatus.divNum) || dataViewIsOpen) && (
