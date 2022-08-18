@@ -8,15 +8,15 @@ const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const BottomAreaComponents = memo((props:any) => {
 
-  const { addData, deleteData, moveLeft, moveDown, moveUp, moveRight, horizontal, vertical, currentImageTag } = props;
+  const { addData, deleteData, moveLeft, moveDown, moveUp, moveRight, horizontal, vertical, currentImageTag, selectedLayer} = props;
 
   console.log("BottomAreaComponents");
   return (
     <View style={styles.controllerLayout}>
-      <TouchableOpacity style={styles.controlButtons} onPress={() => addData({PosX: horizontal, PosY: vertical, imgName: currentImageTag})} >
+      <TouchableOpacity style={styles.controlButtons} onPress={() => addData({PosX: horizontal, PosY: vertical, layer: selectedLayer, imgName: currentImageTag})} >
         <Image style={{resizeMode: 'stretch', width: width/6, height: '100%'}} source={require('../../Asset/Buttons/plus.png')} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.controlButtons} onPress={() => deleteData({PosX: horizontal, PosY: vertical, imgName: currentImageTag})}>
+      <TouchableOpacity style={styles.controlButtons} onPress={() => deleteData({PosX: horizontal, PosY: vertical, layer: selectedLayer ,imgName: currentImageTag})}>
         <Image style={{resizeMode: 'stretch', width: width/6, height: '100%'}} source={require('../../Asset/Buttons/minus.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.controlButtons} onPress={moveLeft}>

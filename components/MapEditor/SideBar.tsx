@@ -44,9 +44,6 @@ const SideBar = memo((props:any) => {
                         style={styles.switch1}
                     />
                     <Text style={styles.contentTitle}>下地レイヤ編集</Text>
-                    <Text>実装予定</Text>
-
-                    {false && (
                     <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                     thumbColor={isEnabled ? "#0000ff" : "#f4f3f4"}
@@ -54,7 +51,6 @@ const SideBar = memo((props:any) => {
                     value={selectedLayerIs==1 ? false : true}
                     style={styles.switch1}
                 />
-                    )}
                 </ScrollView>
             </View>
         </View>
