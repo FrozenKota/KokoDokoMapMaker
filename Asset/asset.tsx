@@ -127,7 +127,7 @@ const images : any = {
 	blue2: require('./Asset1/blue2.png'),
 	boat_1_1: require('./Asset1/boat_1_1.png'),
 	bridge_1_1: require('./Asset1/bridge_1_1.png'),
-	bridge_1_2: require('./Asset1/bridge_1_2.jpeg'),
+	bridge_1_2: require('./Asset1/bridge_1_2.png'),
 	bridge_1_3: require('./Asset1/bridge_1_3.png'),
 	embankment_1_1: require('./Asset1/embankment_1_1.png'),
 	embankment_1_10: require('./Asset1/embankment_1_10.png'),
