@@ -24,7 +24,7 @@ const SelectButton = memo((props:any) => {
             <TouchableOpacity 
               style={styles.okButtonForInitLocation}
               onPress={onDivNumSelect}>
-                <Text style={styles.selectButtonFont2}> 分割数を決定 </Text>
+                <Text style={styles.selectButtonFont2}> 決 定 </Text>
             </TouchableOpacity>
         )
 

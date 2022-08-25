@@ -1,5 +1,5 @@
 import React, {memo, useState} from 'react';
-import { StyleSheet, Dimensions, StatusBar, View, Text, TouchableOpacity, Touchable} from 'react-native';
+import { StyleSheet, Dimensions, StatusBar, View, Text, TouchableOpacity, Image} from 'react-native';
 //import { isArgumentsObject } from 'util/types';
 
 const { width, height} = Dimensions.get('window');
@@ -27,13 +27,14 @@ const TopAreaComponents = (props:any) => {
           <TouchableOpacity
             style={{
               flex: 1,
-              backgroundColor: 'black',
+              backgroundColor: 'darkblue',
               justifyContent: 'center',
               alignItems: 'center',
             }}
             onPress={props.countup}
           >
-            <Text style={{color: "white"}}>ふやす</Text>
+            {/* Divide Button*/}
+            <Image style={{resizeMode: 'contain', height: '90%', width: '90%'}} source={require('../../Asset/Buttons/Divide.png')} />
           </TouchableOpacity>
           <TouchableOpacity
           style={{
@@ -42,27 +43,26 @@ const TopAreaComponents = (props:any) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-              onPress={props.countdown}
-          >
-            <Text style={{color: "white"}}>へらす</Text>
+              onPress={props.countdown}>
+            <Image style={{resizeMode: 'contain', height:'90%', width: '90%'}} source={require('../../Asset/Buttons/Combine.png')} />
           </TouchableOpacity>
         </View>
-        <View style={{...styles.menuButtons, backgroundColor: 'darkblue'}}><Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>分割数を設定！</Text></View>
+        <View style={{...styles.menuButtons, backgroundColor: 'black'}}><Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>分割数設定</Text></View>
       </View>
     )
   }
   const EditMapMode = () => {
     return(
       <View style={styles.menuLayout}>
-        <View style={{...styles.initMenu, backgroundColor: 'black'}}>
-          <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>編集モード</Text>
-          <Text style={{color: 'gray', textAlign: 'center', fontSize: 15}}>{fileName}</Text>
-        </View>
+        <TouchableOpacity style={styles.saveButton} onPress={()=>{saveData(),closeHandler()}}>
+          <Text style={{color:'white', fontSize:(width*0.25)/5}}>SAVE &</Text>
+          <Text style={{color:'white', fontSize:(width*0.25)/5}}>CLOSE</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.saveButton} onPress={saveData}>
           <Text style={{color:'white', fontSize:(width*0.25)/5}}>SAVE</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.closeButton} onPress={closeSideBar}>
-          <Text style={{color:'white', fontSize:(width*0.25)/5}}>MENU</Text>
+          <Text style={{color:'white', fontSize:(width*0.25)/5}}>メニュー</Text>
         </TouchableOpacity>
       </View>
     )
