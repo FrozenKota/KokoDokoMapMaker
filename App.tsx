@@ -307,7 +307,7 @@ const App = () => {
 
             <View style={styles.footerLayout}>
                 <Text style={{fontSize: width/30, color: 'white'}}> Twitter: @kota_ly</Text>
-                <Text style={{fontSize: width/30, color: 'white'}}> ReleaseDate: 2022/8/23</Text>
+                <Text style={{fontSize: width/30, color: 'white'}}> ReleaseDate: 2022/8/25</Text>
                 <Text style={{fontSize: width/30, color: 'white'}}> Rev.2.1</Text>
                 <Text style={{fontSize: width/30, color: 'white'}}></Text>
             </View>
