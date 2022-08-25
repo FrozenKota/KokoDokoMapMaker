@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { MobileAds, BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2927514582864076~1158987390';
+//const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2927514582864076~1158987390';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2927514582864076/9662634694';
 
 const MyAdmob = () => {
     const [ adMobIsInitialized, setAdmobIsInitialized] = useState(false);

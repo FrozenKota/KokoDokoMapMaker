@@ -15,7 +15,7 @@ const TopAreaComponents = (props:any) => {
     return(
       <View style={styles.menuLayout}>
         <View style={{...styles.initMenu, backgroundColor: 'black'}}>
-          <Text style={{color: 'white', textAlign: 'center', fontSize: width/15}}>すきな場所を選択🐟</Text>
+          <Text style={{color: 'white', textAlign: 'center', fontSize: width/16}}>好きな場所へ移動して決定🐟</Text>
         </View>
       </View> 
     )
@@ -33,7 +33,7 @@ const TopAreaComponents = (props:any) => {
             }}
             onPress={props.countup}
           >
-            <Text style={{color: "white"}}>細かく</Text>
+            <Text style={{color: "white"}}>ふやす</Text>
           </TouchableOpacity>
           <TouchableOpacity
           style={{
@@ -44,7 +44,7 @@ const TopAreaComponents = (props:any) => {
           }}
               onPress={props.countdown}
           >
-            <Text style={{color: "white"}}>粗く</Text>
+            <Text style={{color: "white"}}>へらす</Text>
           </TouchableOpacity>
         </View>
         <View style={{...styles.menuButtons, backgroundColor: 'darkblue'}}><Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>分割数を設定！</Text></View>
@@ -55,7 +55,7 @@ const TopAreaComponents = (props:any) => {
     return(
       <View style={styles.menuLayout}>
         <View style={{...styles.initMenu, backgroundColor: 'black'}}>
-          <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>地図を編集しよう</Text>
+          <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>編集モード</Text>
           <Text style={{color: 'gray', textAlign: 'center', fontSize: 15}}>{fileName}</Text>
         </View>
         <TouchableOpacity style={styles.saveButton} onPress={saveData}>

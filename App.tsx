@@ -10,8 +10,6 @@ import MyAdmob from './components/MyAdmob';
 //import { exit, exitCode } from 'process';
 
 const { width, height} = Dimensions.get('window');
-//const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
-//const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const App = () => {
     console.log("App.tsx");
@@ -302,7 +300,7 @@ const App = () => {
                 <View></View>
                 <MenuButton title={' はじめる '} handler={() => {storageControlHandler({option: "new"})}}/>
                 <MenuButton title={' つづける '} handler={() => {storageControlHandler({option: "edit"})}} />
-                <MenuButton title={' 説　明　書 '} handler={() => {setDescriptionIsOpen(true)}} />
+                {false && (<MenuButton title={' 使　い　方 '} handler={() => {setDescriptionIsOpen(true)}} /> )}
                 <View><MyAdmob /></View>
                 {false && (<MenuButton title={' G A L L E R Y '} handler={() => {storageControlHandler({option: "gallery"})}} /> /*実装中*/ )}  
             </View>

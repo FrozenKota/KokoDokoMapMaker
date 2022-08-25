@@ -15,7 +15,7 @@ const SelectButton = memo((props:any) => {
             <TouchableOpacity
               style={styles.okButtonForInitLocation}
               onPress={onRegionSelect}>
-                <Text style={{color: "white", fontSize: 20}}> 場所を決定！ </Text>
+                <Text style={styles.selectButtonFont1}> 決　定 </Text>
             </TouchableOpacity>
         )
     }
@@ -24,7 +24,7 @@ const SelectButton = memo((props:any) => {
             <TouchableOpacity 
               style={styles.okButtonForInitLocation}
               onPress={onDivNumSelect}>
-                <Text style={{color: "white", fontSize: 20}}> 分割数を決定 </Text>
+                <Text style={styles.selectButtonFont2}> 分割数を決定 </Text>
             </TouchableOpacity>
         )
 
@@ -32,7 +32,7 @@ const SelectButton = memo((props:any) => {
     const EditMapMode = () => {
         return(
             <TouchableOpacity style={styles.okButtonForInitLocation} onPress={assetSelectHandler}>
-                <Text style={{color: "white", fontSize: 20}}> アセット選択 </Text>
+                <Text style={styles.selectButtonFont2}> 素　材 </Text>
             </TouchableOpacity>
         )
     }
@@ -65,5 +65,15 @@ const styles = StyleSheet.create({
       alignContent: 'center',
       justifyContent: 'center',
       backgroundColor: 'darkblue',
+      borderWidth: 1,
+      borderColor: 'white'
+    },
+    selectButtonFont1:{
+      color: 'white',
+      fontSize: width/15,
+    },
+    selectButtonFont2:{
+      color: 'white',
+      fontSize: width/15,
     }
   });
