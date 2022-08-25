@@ -20,7 +20,7 @@ const ITextInput = (props: any) => {
             <View style={styles.inputContainer} >
                 <View style={styles.titleLayout}>
                     <View style={styles.titleStyle}>
-                        <Text style={styles.titleText}>ファイルを入力</Text>
+                        <Text style={styles.titleText}>ファイル名を入力</Text>
                     </View>
                 </View>
                 <View style={styles.inputLayout}>
@@ -34,11 +34,11 @@ const ITextInput = (props: any) => {
                     </View>
                     <View style={styles.buttonLayout}>
                         <TouchableOpacity onPress={cancelHandler} style={styles.Button}>
-                            <Text style={styles.ButtonFont}>Cancel</Text>
+                            <Text style={styles.ButtonFont}>中断</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={okHandler} style={styles.Button}>
-                            <Text style={styles.ButtonFont}>OK</Text>
+                            <Text style={styles.ButtonFont}>決定</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -121,7 +121,7 @@ const StorageControl = memo((props: any) => {
                     </View>
         
                     <TouchableOpacity onPress={closeStorageControlHandler} style={styles.closeButton}>
-                        <Text style={{color: 'white'}}>Close</Text>
+                        <Text style={{fontSize: width/20, color: 'white'}}>Close</Text>
                     </TouchableOpacity>
     
                 </View>

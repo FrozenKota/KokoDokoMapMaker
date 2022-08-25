@@ -29,10 +29,6 @@ const SideBar = memo((props:any) => {
 
     return (
         <View style={styles.sideBarContainer}>
-            <TouchableOpacity style={styles.closeButtonArea} onPress={closeMapEditorHandler}>
-                <Text style={styles.closeButtonText}>Save & Close</Text>
-            </TouchableOpacity>
-
             <View style={styles.contentAreaLayout}>
                 <ScrollView>
                     <Text style={styles.contentTitle}>グリッド表示</Text>
@@ -72,7 +68,7 @@ const styles = StyleSheet.create({
         width: '60%',
         top: HEIGHT * 0.15,
         backgroundColor: 'black',
-        opacity: 0.8
+        opacity: 0.9
     },
     closeButtonArea: {
         flex: 0.1,
