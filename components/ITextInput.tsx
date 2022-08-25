@@ -20,7 +20,7 @@ const ITextInput = (props: any) => {
             <View style={styles.inputContainer} >
                 <View style={styles.titleLayout}>
                     <View style={styles.titleStyle}>
-                        <Text style={styles.titleText}>名前を入力</Text>
+                        <Text style={styles.titleText}>ファイルを入力</Text>
                     </View>
                 </View>
                 <View style={styles.inputLayout}>
@@ -30,15 +30,15 @@ const ITextInput = (props: any) => {
                         value={text}> 
                     </TextInput>
                     <View style={styles.message}>
-                        <Text style={{color: '#222222', fontSize: 15}}>アンダーバー"_"は使わないでください</Text>
+                        <Text style={{color: '#222222', fontSize: 15}}>※アンダーバー"_"は使用できません。</Text>
                     </View>
                     <View style={styles.buttonLayout}>
                         <TouchableOpacity onPress={cancelHandler} style={styles.Button}>
-                            <Text style={{color: 'black'}}>Cancel</Text>
+                            <Text style={styles.ButtonFont}>Cancel</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={okHandler} style={styles.Button}>
-                            <Text style={{color: 'black'}}>OK</Text>
+                            <Text style={styles.ButtonFont}>OK</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -107,6 +107,10 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         width: '100%',
     },
+    ButtonFont:{
+        color: 'black',
+        fontSize: width/18
+    },
     input: {
         height: '30%',
         margin: 12,
@@ -118,5 +122,5 @@ const styles = StyleSheet.create({
         marginLeft: 12,
         marginBottom: 12,
         color: 'blue'
-    }
+    },
 });

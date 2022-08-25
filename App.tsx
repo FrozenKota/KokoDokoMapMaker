@@ -3,21 +3,22 @@ import {StyleSheet, Dimensions, StatusBar, View, Text, TouchableOpacity, BackHan
 
 import MapEditor from './components/MapEditor/MapEditor';
 import StorageControl from './components/StorageControl';
-import Images from './Asset/asset';
+import Description from './components/Description';
 import {storage} from './Storage';
 import MyAdmob from './components/MyAdmob';
 //import { loadOptions } from '@babel/core';
 //import { exit, exitCode } from 'process';
 
 const { width, height} = Dimensions.get('window');
-const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
-const HEIGHT = height - STATUSBAR_HEIGHT;
+//const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+//const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const App = () => {
     console.log("App.tsx");
     const [ storageControlIsOpen, setStorageControlIsOpen ] = useState(false);
     const [ storageControlOption, setStorageControlOption ] = useState("");
     const [ mapEditorIsOpen, setMapEditorIsOpen ] = useState(false);
+    const [ descriptionIsOpen, setDescriptionIsOpen ] = useState(false);
 
     // セーブデータ　テーブル
     const [ imgObj, setImgObj ] = useState<{
@@ -301,14 +302,15 @@ const App = () => {
                 <View></View>
                 <MenuButton title={' はじめる '} handler={() => {storageControlHandler({option: "new"})}}/>
                 <MenuButton title={' つづける '} handler={() => {storageControlHandler({option: "edit"})}} />
+                <MenuButton title={' 説　明　書 '} handler={() => {setDescriptionIsOpen(true)}} />
                 <View><MyAdmob /></View>
                 {false && (<MenuButton title={' G A L L E R Y '} handler={() => {storageControlHandler({option: "gallery"})}} /> /*実装中*/ )}  
             </View>
 
             <View style={styles.footerLayout}>
                 <Text style={{fontSize: width/30, color: 'white'}}> Twitter: @kota_ly</Text>
-                <Text style={{fontSize: width/30, color: 'white'}}> ReleaseDate: 2022/8/20</Text>
-                <Text style={{fontSize: width/30, color: 'white'}}> Rev.1.0.0</Text>
+                <Text style={{fontSize: width/30, color: 'white'}}> ReleaseDate: 2022/8/23</Text>
+                <Text style={{fontSize: width/30, color: 'white'}}> Rev.2.1</Text>
                 <Text style={{fontSize: width/30, color: 'white'}}></Text>
             </View>
 
@@ -335,6 +337,10 @@ const App = () => {
                     editType={eventManager.option}
                 />
             )}
+
+            {descriptionIsOpen && (
+                <Description closeHandler={()=>{setStorageControlIsOpen(false)}}/>
+            )}
         </View>
     )
 }
@@ -343,7 +349,7 @@ const MenuButton = (props: any) => {
     const {title, handler} = props;
 
     return (
-        <TouchableOpacity onPress={() => {handler({option: "new"})}}>
+        <TouchableOpacity onPress={() => {handler()}}>
             <View style={styles.selectButton}><Text style={styles.selectButtonText}>{title}</Text></View>
         </TouchableOpacity>
     )
@@ -359,7 +365,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow',
     },
     titleLayout:{
-        height: HEIGHT*0.20,
+        height: height*0.20,
         width: width,
         backgroundColor: "#4477FF",
         opacity: 1,
@@ -374,7 +380,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     selectButtonLayout:{
-        height: HEIGHT*0.70,
+        height: height*0.70,
         width: width,
         flexDirection: 'column',
         backgroundColor: '#000099',
@@ -402,7 +408,7 @@ const styles = StyleSheet.create({
     },
     footerLayout: {
         flex: 1,
-        height: HEIGHT*0.10,
+        height: height*0.10,
         width: width,
         backgroundColor: '#000055',
         opacity: 1,
