@@ -64,3 +64,6 @@ buck-out/
 
 # gradle
 gradle.properties
+
+# Developper
+doc/*
