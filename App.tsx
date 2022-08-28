@@ -297,10 +297,9 @@ const App = () => {
             </View>
 
             <View style={styles.selectButtonLayout}>
-                <View></View>
                 <MenuButton title={' はじめる '} handler={() => {storageControlHandler({option: "new"})}}/>
                 <MenuButton title={' つづける '} handler={() => {storageControlHandler({option: "edit"})}} />
-                {false && (<MenuButton title={' 使　い　方 '} handler={() => {setDescriptionIsOpen(true)}} /> )}
+                <MenuButton title={' 使　い　方 '} handler={() => {setDescriptionIsOpen(true)}} />
                 <View><MyAdmob /></View>
                 {false && (<MenuButton title={' G A L L E R Y '} handler={() => {storageControlHandler({option: "gallery"})}} /> /*実装中*/ )}  
             </View>
@@ -347,12 +346,11 @@ const MenuButton = (props: any) => {
     const {title, handler} = props;
 
     return (
-        <TouchableOpacity onPress={() => {handler()}}>
-            <View style={styles.selectButton}><Text style={styles.selectButtonText}>{title}</Text></View>
+        <TouchableOpacity onPress={() => {handler()}} style={styles.selectButton}>
+                <Text style={styles.selectButtonText}>{title}</Text>
         </TouchableOpacity>
     )
 }
-
 
 export default App;
 

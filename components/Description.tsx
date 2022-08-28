@@ -5,11 +5,7 @@ const {width, height} = Dimensions.get('window');
 
 const Description = (props: any) => {
     const {closeHandler} = props;
-    let hoge:any = [];
 
-    for(let i=0; i<50; i++){
-        hoge.push(<Text key={i} style={{fontSize: (width/5)*(i/50), color: 'white'}}>説明書　作成中</Text>)
-    }
 
     const CloseButton = () => {
         return (
@@ -22,9 +18,65 @@ const Description = (props: any) => {
     return(
         <View style={styles.mainContainer}>
             <View style={styles.mainLayout} >
-                <ScrollView>
-                    {hoge}
-                </ScrollView>         
+            {/* copy and paste from here ****************************** */}
+            <ScrollView style={{flex:1, flexDirection: 'column'}}> 
+                <Text style={styles.h1} >使　用　方　法</Text>
+                <Text style={styles.h2} >１．セーブデータの作成</Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/1_0_createData.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >「はじめる」をタップします</Text>
+
+                <Image style={styles.img1} source={require('../Asset/HowToUse/1_1_inputFileName.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >ファイル名を入力し、「決定」をタップします</Text>
+
+                <Text style={styles.h2} >２．場所を選択</ Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/2_1_selectPlace.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >地図を動かし、場所を選択します</Text>
+
+                <Image style={styles.img1} source={require('../Asset/HowToUse/2_2_selectPlace.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >「決定」をタップします</ Text>
+                <Text></Text>
+                <Text style={styles.h2} >３．下地レイヤの編集</ Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/3_1_editBottomLayer.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >土、海などの下地レイヤを編集します。</ Text>
+                <Text style={styles.h3} >「メニュー」をタップしサイドバーを開きます</ Text>
+                <Text style={styles.h3} >次に、「下地レイヤ編集」を有効にします</ Text>
+                <Text></Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/3_2_choseImage.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >「素材」を選択すると素材一覧が開きます</ Text>
+                <Text style={styles.h3} >好きな素材を選択します</ Text>
+                <Text></Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/3_3_placeMaterial.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >画面下に並ぶボタンを使用して画像を配置します</ Text>
+                <Text style={styles.h3} >「＋」・・・画像を追加</ Text>
+                <Text style={styles.h3} >「ー」・・・画像を削除</ Text>
+                <Text style={styles.h3} >「←」・・・左へ移動</ Text>
+                <Text style={styles.h3} >「↑」・・・上へ移動</ Text>
+                <Text style={styles.h3} >「→」・・・右へ移動</ Text>
+                <Text style={styles.h3} >「↓」・・・下へ移動</ Text>
+                <Text> </Text>
+                <Text style={styles.h2} >４．上地レイヤの編集</ Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/4_1_editTopLayer.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >「下地レイヤ編集」を無効にします</ Text>
+                <Text style={styles.h3} >下地レイヤと同様に素材を選択して配置します</ Text>
+                <Text></Text>
+                <Text style={styles.h3} >このように、下地レイヤに重ねて配置できます</ Text>
+                <Text> </Text>
+                <Text style={styles.h2}>５．データの確認</Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/5_1_checkWork.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >グリッド線を非表示にして作品を確認しましょう</ Text>
+                <Text style={styles.h3} >「メニュー」から「グリッド表示」を無効にします。</ Text>
+                <Text></Text>
+                <Text style={styles.h2}>６．スクリーンショット</ Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/6_1_checkWork.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >スクリーンショットで作品を撮影して、SNSでシェアしてくださると嬉しいです。私も作品を見てみたいです。</ Text>
+                <Text style={styles.h3} >※SNSへの共有機能を実装予定です。</ Text>
+                <Text></Text>
+                <Text style={styles.h2}>７．セーブ</Text>
+                <Image style={styles.img1} source={require('../Asset/HowToUse/7_saveData.jpg')} resizeMode='contain' />
+                <Text style={styles.h3} >「セーブ」または「セーブ&クローズ」でデータを保存します</ Text>
+                <Text style={styles.h3} >作品を作りながらのこまめな「セーブ」をオススメします。</ Text>
+                <Text></Text>
+                </ScrollView>
             </View>
         </View>
     )
@@ -48,7 +100,8 @@ const styles = StyleSheet.create({
     },
     h1: {
         fontSize: width/10,
-        color: 'white',
+        color: 'darkblue',
+        backgroundColor: 'white'
     },
     h2: {
         fontSize: width/15,
@@ -58,4 +111,8 @@ const styles = StyleSheet.create({
         fontSize: width/20,
         color: 'white',
     },
+    img1:{
+        width: '90%',
+        
+    }
 })
