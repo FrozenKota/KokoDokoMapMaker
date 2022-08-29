@@ -93,6 +93,10 @@ const App = () => {
         setMapEditorIsOpen(false);
     }
 
+    const closeDescriptionHandler = () => {
+        setDescriptionIsOpen(previous => !previous)
+    }
+
     const createDataHandler = async(e: {newFileName: string, option: string}) => {
         console.log("createDataHandler(App.tsx)")
 
@@ -299,7 +303,7 @@ const App = () => {
             <View style={styles.selectButtonLayout}>
                 <MenuButton title={' はじめる '} handler={() => {storageControlHandler({option: "new"})}}/>
                 <MenuButton title={' つづける '} handler={() => {storageControlHandler({option: "edit"})}} />
-                <MenuButton title={' 使　い　方 '} handler={() => {setDescriptionIsOpen(true)}} />
+                <MenuButton title={' 使　い　方 '} handler={() => {closeDescriptionHandler()}} />
                 <View><MyAdmob /></View>
                 {false && (<MenuButton title={' G A L L E R Y '} handler={() => {storageControlHandler({option: "gallery"})}} /> /*実装中*/ )}  
             </View>
@@ -336,7 +340,9 @@ const App = () => {
             )}
 
             {descriptionIsOpen && (
-                <Description closeHandler={()=>{setStorageControlIsOpen(false)}}/>
+                <Description 
+                    closeHandler={closeDescriptionHandler}
+                />
             )}
         </View>
     )
