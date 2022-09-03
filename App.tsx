@@ -6,8 +6,6 @@ import StorageControl from './components/StorageControl';
 import Description from './components/Description';
 import {storage} from './Storage';
 import MyAdmob from './components/MyAdmob';
-//import { loadOptions } from '@babel/core';
-//import { exit, exitCode } from 'process';
 
 const { width, height} = Dimensions.get('window');
 
@@ -50,14 +48,13 @@ const App = () => {
             longitudeDelta: 0.05 * (width / height),
         },
         imgData: {
-            xy00:{PosX: 0, PosY: 0, imgName: 'Asset0_1'},
-            xy01:{PosX: 0, PosY: 1, layer: 2, imgName: 'Asset0_1'},
+            xy01:{PosX: 0, PosY: 1, layer: 2, sizeRatio:2, imgName: 'Asset0_1',},
         },
     })
     const [ eventManager, setEventManager ] = useState({fileName:"", option:""});
 
     const initRegion = {
-        latitude: 38.165510778804716, 
+        latitude: 38.165510778804716,
         longitude: 137.6747134141624,
         latitudeDelta: 19.31312361327316,
         longitudeDelta: 0.05 * (width / height),
@@ -236,8 +233,11 @@ const App = () => {
     const addNewImgData = (imgData: any) => {
         const {PosX, PosY, imgName, layer} = imgData;
 
+        const X = zeroPadding(PosX, 3);
+        const Y = zeroPadding(PosY, 3);
+
         const tmpObj: any = imgObj;
-        tmpObj.imgData['xy'+String(PosX)+String(PosY)+String(layer)] = {PosX: PosX, PosY: PosY, layer: layer, imgName: imgName}
+        tmpObj.imgData['xy' + X + Y + String(layer)] = {PosX: PosX, PosY: PosY, layer: layer, imgName: imgName}
         console.log("setImgObj.");
         setImgObj(tmpObj);
     }
@@ -245,8 +245,11 @@ const App = () => {
     const deleteImgData = (imgData: any) => {
         const {PosX, PosY, layer} = imgData;
 
+        const X = zeroPadding(PosX, 3);
+        const Y = zeroPadding(PosY, 3);
+
         const tmpImgObj: any = imgObj;
-        delete tmpImgObj.imgData['xy'+String(PosX)+String(PosY)+String(layer)];
+        delete tmpImgObj.imgData['xy'+ X + Y + String(layer)];
         console.log("setImgObj.");
         setImgObj(tmpImgObj);
     }
@@ -269,7 +272,17 @@ const App = () => {
         console.log("setImgObj.");
         setImgObj(tmpObj);
     }
+
+    function zeroPadding(NUM: number, LEN: number){
+
+        console.log("LEN = " + LEN)
+        console.log("Array(LEN).join('0') = " + Array(LEN).join('0'));
+        console.log("Array(LEN).join('0') + NUM = " + Array(LEN).join('0') + NUM )
+        console.log("Array(LEN).join('0') + NUM ).slice( -LEN ) = " + (Array(LEN).join('0') + NUM ).slice( -LEN ) );
     
+        return ( Array(LEN).join('0') + NUM ).slice( -LEN );
+      }
+
     // BackHandler
     useEffect(() => {
         const backAction = () => {
@@ -290,7 +303,13 @@ const App = () => {
         );
     
         return () => backHandler.remove();
-      }, []);
+    }, []);
+
+    
+    useEffect(()=>{
+        const demoObj = {};
+        storage.save({key: 'demo', data: demoObj})
+    }, [])
 
     console.log(imgObj);
 

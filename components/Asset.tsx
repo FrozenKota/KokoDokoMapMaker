@@ -16,7 +16,6 @@ const AssetWindow = (props :any) => {
     const IMG_KEYS: any = Object.keys(Images);
 
     for(let i = 0; i < IMG_KEYS.length/COL_ASSET_NUM; i+=1){
-        console.log(i%6);
         if((i%6) === 0)
             data.push(
                 <View key={i*2+0}>
