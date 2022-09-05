@@ -16,13 +16,6 @@ const AssetWindow = (props :any) => {
     const IMG_KEYS: any = Object.keys(Images);
 
     for(let i = 0; i < IMG_KEYS.length/COL_ASSET_NUM; i+=1){
-        if((i%6) === 0)
-            data.push(
-                <View key={i*2+0}>
-                    <MyAdmob />
-                </View>
-            )
-
         data.push(
             <View key={i*2+1} style={{flex:1, flexDirection: 'row'}}>
                 <TouchableOpacity  style={{width: width/rowNum, height: width/rowNum}} onPress={() => closeAssetHandler(IMG_KEYS[i*COL_ASSET_NUM+0])}>
@@ -76,6 +69,7 @@ const AssetWindow = (props :any) => {
             <ScrollView>
                 {data}
             </ScrollView>
+            <MyAdmob />
         </View>
     )
 }
