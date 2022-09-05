@@ -145,7 +145,11 @@ const App = () => {
         setImgObj(tmpObj);                  // ワークオブジェクト(imgObj)に設定
 
         // セーブデータを作成 - - - - - - - - - - - - - - - - - - - - - - - - -
-        await storage.save({key: newFileName, data: tmpObj});
+        await storage.save({
+            key: newFileName,
+            data: tmpObj,
+            expires: null,
+        });
         
         // 編集モードを立ち上げ - - - - - - - - - - - - - - - - - - - - - - - - 
         setMapEditorIsOpen(true);   // 地図編集画面起動
@@ -175,7 +179,11 @@ const App = () => {
             console.log("created keyList")
             console.log(keyListBuffer);
         }
-        await storage.save({key: 'keyList',data: keyListBuffer})
+        await storage.save({
+            key: 'keyList',
+            data: keyListBuffer,
+            expires: null,
+        })
     }
 
     const editDataHandler = async(e: any) => {
@@ -222,7 +230,11 @@ const App = () => {
         console.log(imgObj);
 
         try{
-            const res = await storage.save({key: imgObj.fileName, data: imgObj});
+            const res = await storage.save({
+                key: imgObj.fileName,
+                data: imgObj,
+                expires: null,
+            });
         }catch(e){
             console.log(e);
         }finally{
@@ -304,12 +316,6 @@ const App = () => {
     
         return () => backHandler.remove();
     }, []);
-
-    
-    useEffect(()=>{
-        const demoObj = {};
-        storage.save({key: 'demo', data: demoObj})
-    }, [])
 
     console.log(imgObj);
 

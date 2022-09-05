@@ -62,7 +62,11 @@ const StorageControl = memo((props: any) => {
 
         delete tmpKeyList.keyList[deleteFileName];
 
-        await storage.save({key: 'keyList', data: tmpKeyList})
+        await storage.save({
+            key: 'keyList',
+            data: tmpKeyList,
+            expires: null,
+        })
     }
     
     // DataBlock will display file information
