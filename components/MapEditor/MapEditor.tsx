@@ -140,16 +140,6 @@ const MapEditor = memo((props: any) => {
       setGridLineIsOpen(true);
   }
 
-  function zeroPadding(NUM: number, LEN: number){
-
-    console.log("LEN = " + LEN)
-    console.log("Array(LEN).join('0') = " + Array(LEN).join('0'));
-    console.log("Array(LEN).join('0') + NUM = " + Array(LEN).join('0') + NUM )
-    console.log("Array(LEN).join('0') + NUM ).slice( -LEN ) = " + (Array(LEN).join('0') + NUM ).slice( -LEN ) );
-
-    return ( Array(LEN).join('0') + NUM ).slice( -LEN );
-  }
-
   return (
     <View style={{...styles.mainContainer, height: height} } >
       <TopAreaComponents fileName={imgObj.fileName} initStatus={imgObj.initStatus} countup={upDivNum} countdown={downDivNum} closeHandler={closeMapEditorHandler1} closeSideBar = {closeSideBarHandler} saveData={saveData} />
