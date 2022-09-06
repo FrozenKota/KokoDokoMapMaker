@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     // コントロールボタン配置エリア
     controllerLayout: {
       width: '100%',
-      height: height * 0.10,
+      height: HEIGHT * 0.10,
       flexDirection: 'row',
     },
     controlButtons: {

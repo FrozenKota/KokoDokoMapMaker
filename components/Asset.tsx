@@ -77,8 +77,8 @@ const AssetWindow = (props :any) => {
 const styles = StyleSheet.create({
     assetView: {
         position: 'absolute',
-        top: height*0.15,
-        height: height*0.7,
+        top: HEIGHT*0.15,
+        height: HEIGHT*0.7,
         width: width,
         opacity: 0.9,
         backgroundColor: 'black',  

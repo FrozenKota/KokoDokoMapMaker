@@ -7,7 +7,9 @@ import Description from './components/Description';
 import {storage} from './Storage';
 import MyAdmob from './components/MyAdmob';
 
-const { width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
+const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const App = () => {
     console.log("App.tsx");
@@ -45,7 +47,7 @@ const App = () => {
             latitude: 38.165510778804716, 
             longitude: 0.05000013082483434,
             latitudeDelta: 0.05,
-            longitudeDelta: 0.05 * (width / height),
+            longitudeDelta: 0.05 * (width / HEIGHT),
         },
         imgData: {
             xy01:{PosX: 0, PosY: 1, layer: 2, sizeRatio:2, imgName: 'Asset0_1',},
@@ -57,7 +59,7 @@ const App = () => {
         latitude: 38.165510778804716,
         longitude: 137.6747134141624,
         latitudeDelta: 19.31312361327316,
-        longitudeDelta: 0.05 * (width / height),
+        longitudeDelta: 0.05 * (width / HEIGHT),
     };
 
     const initLocation = () => {
@@ -70,7 +72,7 @@ const App = () => {
             latitude: 38.165510778804716, 
             longitude: 137.6747134141624,
             latitudeDelta: 19.31312361327316,
-            longitudeDelta: 0.05 * (width / height),
+            longitudeDelta: 0.05 * (width / HEIGHT),
         };
     }
 
@@ -279,7 +281,7 @@ const App = () => {
         console.log("setDivNumHandler(App.tsx)")
         const tmpObj = imgObj;
         tmpObj['divNumX'] = divNumX;
-        tmpObj['divNumY'] = Math.floor(height*0.7 / (width/divNumX));
+        tmpObj['divNumY'] = Math.floor(HEIGHT*0.7 / (width/divNumX));
         tmpObj.initStatus['divNum'] = false;    // 分割数設定フラグを解除
         console.log("setImgObj.");
         setImgObj(tmpObj);
@@ -392,7 +394,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow',
     },
     titleLayout:{
-        height: height*0.20,
+        height: HEIGHT*0.20,
         width: width,
         backgroundColor: "#4477FF",
         opacity: 1,
@@ -407,14 +409,14 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     selectButtonLayout:{
-        height: height*0.70,
+        height: HEIGHT*0.70,
         width: width,
         flexDirection: 'column',
         backgroundColor: '#000099',
         justifyContent: 'space-evenly',
     },
     selectButton:{
-        height: (height*0.7)/8,
+        height: (HEIGHT*0.7)/8,
         width: width*0.6,
         left: width*0.2,
         justifyContent: 'center',
@@ -435,7 +437,7 @@ const styles = StyleSheet.create({
     },
     footerLayout: {
         flex: 1,
-        height: height*0.10,
+        height: HEIGHT*0.10,
         width: width,
         backgroundColor: '#000055',
         opacity: 1,

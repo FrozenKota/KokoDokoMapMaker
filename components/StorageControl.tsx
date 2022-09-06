@@ -1,10 +1,12 @@
 import React, {useState, memo, useCallback, useEffect} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Dimensions, ScrollView, Touchable, TouchableHighlight} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Dimensions, ScrollView, StatusBar} from 'react-native';
 import { storage } from '../Storage';
 import ITextInput from './ITextInput';
 import ConfirmModal from './ConfirmModal'
 
 const { width, height } = Dimensions.get('window');
+const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const StorageControl = memo((props: any) => {
     const {closeStorageControlHandler, option, createData, editData, deleteData } = props;
@@ -195,7 +197,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white', 
     },
     deleteButtonText: {
-        fontSize: height / 25,
+        fontSize: HEIGHT / 25,
         color: 'white',
     },
     deleteDataButton: {

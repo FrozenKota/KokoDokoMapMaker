@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView, Image, Text, Dimensions, TouchableOpacity} from 'react-native';
-
-const {width, height} = Dimensions.get('window');
+import {View, StyleSheet, ScrollView, Image, Text, Dimensions, TouchableOpacity, StatusBar} from 'react-native';
+const { width, height } = Dimensions.get('window');
+const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const Description = (props: any) => {
     const {closeHandler} = props;
@@ -147,10 +148,10 @@ const styles = StyleSheet.create({
     },
     closeBtn: {
         position: 'absolute',
-        height: height * 0.06,
-        width: height * 0.06,
+        height: HEIGHT * 0.06,
+        width: HEIGHT * 0.06,
         top: 10,
-        left: width - (height * 0.07),
+        left: width - (HEIGHT * 0.07),
         backgroundColor: 'darkred',
         borderRadius: 45,
         justifyContent: 'center',
