@@ -141,7 +141,7 @@ const MapEditor = memo((props: any) => {
   }
 
   return (
-    <View style={{...styles.mainContainer, height: height} } >
+    <View style={{...styles.mainContainer, height: HEIGHT} } >
       <TopAreaComponents fileName={imgObj.fileName} initStatus={imgObj.initStatus} countup={upDivNum} countdown={downDivNum} closeHandler={closeMapEditorHandler1} closeSideBar = {closeSideBarHandler} saveData={saveData} />
       <MapAreaComponents initialRegion={imgObj.region} mapType={"satellite"} mapIsOpen={mapIsOpen} onRegionChange={(e:any) => onRegionChange(e)} scrollIsEnabled={scrollIsEnabled} zoomIsEnabled={zoomIsEnabled} />
       <SelectButton assetSelectHandler={assetSelectHandler} initStatus={imgObj.initStatus} enableEditMode={enableEditMode} onRegionSelect={onRegionSelect} onDivNumSelect={onDivNumSelect} />
@@ -154,7 +154,7 @@ const MapEditor = memo((props: any) => {
       
       { (((!imgObj.initStatus.location && imgObj.initStatus.divNum) || 
         (!imgObj.initStatus.location && !imgObj.initStatus.divNum)) && gridLineIsOpen) && (
-        <GridLine x1="0" y1="0" x2={width} y2={height*0.7} divNumX={glidNumber} vertical={vertical} horizontal={horizontal} imgTag={currentImageTag}/>
+        <GridLine x1="0" y1="0" x2={width} y2={HEIGHT * 0.7} divNumX={glidNumber} vertical={vertical} horizontal={horizontal} imgTag={currentImageTag}/>
       )}
 
       { assetIsOpen && (
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     position: 'absolute',
     width: width,
-    height: height,
+    height: HEIGHT,
     backgroundColor: 'black',
   }
 });

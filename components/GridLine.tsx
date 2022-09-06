@@ -25,7 +25,9 @@ import Svg, {
     // Mask,
   } from 'react-native-svg';
 
-  const {width, height } = Dimensions.get('window');
+  const { width, height } = Dimensions.get('window');
+  const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+  const WIN_HEIGHT = height - STATUSBAR_HEIGHT;
 
 const GridLine = (props: any) => {
 
@@ -82,9 +84,9 @@ const GridLine = (props: any) => {
 const styles = StyleSheet.create({
     overlayMatrix: {
         position: 'absolute',
-        top: '15%',
+        top: WIN_HEIGHT * 0.15,
         left: 0,
-        height: height*0.7,
+        height: WIN_HEIGHT * 0.7,
         width: '100%',
       }
 })

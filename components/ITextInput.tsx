@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
+const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const ITextInput = (props: any) => {
     const {setFileNameHandler, closeStorageControlHandler} = props;
