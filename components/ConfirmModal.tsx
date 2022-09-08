@@ -1,7 +1,9 @@
 import React, {memo} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Dimensions} from  'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar} from  'react-native';
 
 const { width, height } = Dimensions.get('window');
+const STATUSBAR_HEIGHT = (StatusBar.currentHeight? StatusBar.currentHeight : 0);
+const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const ConfirmModal = memo((props: any) => {
     const {closeHandler, okHandler, fileName} = props;
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         position: 'absolute',
         flex: 1,
-        height: height,
+        height: HEIGHT,
         width: width,
         backgroundColor: 'black',
         opacity: 0.9,
