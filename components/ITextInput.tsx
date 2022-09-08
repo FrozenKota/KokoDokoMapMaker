@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         position: 'absolute',
         flex: 1,
-        height: height,
+        height: HEIGHT,
         width: width,
         backgroundColor: 'black',
         opacity: 0.9,
