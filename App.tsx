@@ -1,21 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 20 }}>Home Screen</Text>
+      <Text></Text>
+      <Button
+        title='Go to Select Location Page'
+        onPress={() => navigation.navigate('SelectLocation')}
+      />
+    </View>
+  );
+}
+
+const SelectLocation = ({ navigation }) => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 20 }}>Select Location</Text>
+      <Text></Text>
+      <Button
+        title='Go to Select Location.... again'
+        onPress={() => navigation.push('SelectLocation')}
+      />
+    </View>
+  );
+}
 
 export default function App() {
-  const message: Array<string> = [];
 
-  message.push('Hello ');
-  console.log(message);
-  message.push('World. '); 
-  console.log(message);
-  message.push('I am the Bug :->');
-  console.log(message);
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text>{message.join('')}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
+        <Stack.Screen name="SelectLocation" component={SelectLocation} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
