@@ -1,9 +1,8 @@
 import React, { useMemo, ReactNode } from 'react';
 import { Text, View, Button, TouchableOpacity } from 'react-native';
-import { NativeBaseProvider, Box } from "native-base";
 import Header from '../Common/Header';
 
-const DataSelectPage: React.FC<any> = ({ navigation }) => {
+const DataInitPage: React.FC<any> = ({ navigation }) => {
     const left: ReactNode = useMemo(() => {
         return (
             <TouchableOpacity
@@ -18,7 +17,7 @@ const DataSelectPage: React.FC<any> = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header title="データ選択画面" left={left} />
+            <Header title="データ初期設定画面" left={left} />
             <View
                 style={{
                     flex: 1,
@@ -26,11 +25,12 @@ const DataSelectPage: React.FC<any> = ({ navigation }) => {
                     alignContent: 'center',
                     backgroundColor: '#ff93c9',
                 }}>
-                <Text style={{ textAlign: 'center' }}>データ選択画面</Text>
+                <Text style={{ textAlign: 'center' }}>データ初期設定画面</Text>
                 <Button title="データ1" onPress={() => { navigation.navigate('TabNavigator') }}></Button>
+
             </View>
         </View>
     );
 }
 
-export default DataSelectPage;
+export default DataInitPage;

@@ -12,12 +12,11 @@ const Stack = createStackNavigator();
 const StackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
-            initialRouteName='HomeScreen'
+            initialRouteName='DataSelectPage'
             screenOptions={{ headerShown: false }}>
             <Stack.Screen name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="DataSelectPage" component={DataSelectPage} />
             <Stack.Screen name="DataCreatePage" component={DataCreatePage} />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
     );
 };

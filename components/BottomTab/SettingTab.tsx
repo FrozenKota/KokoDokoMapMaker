@@ -27,7 +27,7 @@ const SettingTab: React.FC<any> = ({ navigation }) => {
                     backgroundColor: '#CCCCFF',
                 }}>
                 <Text style={{ textAlign: 'center' }}>オプション変更画面です</Text>
-                <Button title="Save & Quit" onPress={() => { navigation.navigate('HomeScreen') }}></Button>
+                <Button title="Save & Quit" onPress={() => { navigation.navigate('DataSelectPage') }}></Button>
             </View>
         </View>
     );
