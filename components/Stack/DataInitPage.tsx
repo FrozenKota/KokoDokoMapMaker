@@ -17,7 +17,7 @@ const DataInitPage: React.FC<any> = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header title="データ初期設定画面" left={left} />
+            {false && (<Header title="データ初期設定画面" left={left} />)}
             <View
                 style={{
                     flex: 1,

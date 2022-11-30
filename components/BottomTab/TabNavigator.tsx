@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import AssetTab from './AssetTab';
 import EditorTab from './EditorTab';
 import SettingTab from './SettingTab';
@@ -12,7 +12,7 @@ const TabNavigator: React.FC = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
-                    let iconName = 'bug'
+                    let iconName: string | boolean;
                     if (route.name === 'Edit') {
                         iconName = focused
                             ? 'brush'
@@ -26,7 +26,7 @@ const TabNavigator: React.FC = () => {
                             ? 'gift'
                             : 'gift-outline';
                     } else {
-                        iconName = 'bug';
+                        iconName = "bug";
                     }
 
                     return <Ionicons name={iconName} size={size} color={color} />;
