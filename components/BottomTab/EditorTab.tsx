@@ -1,6 +1,15 @@
 import React, { ReactNode, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, View, Button, TouchableOpacity } from 'react-native';
+import {
+    SafeAreaView,
+    StyleSheet,
+    Platform,
+    StatusBar,
+    Text,
+    View,
+    Button,
+    TouchableOpacity
+} from 'react-native';
 import Header from '../Common/Header';
 
 const EditorTab: React.FC = () => {
@@ -18,7 +27,7 @@ const EditorTab: React.FC = () => {
     }, [navigation]);
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
             {false && (<Header title="編集画面" right={right} />)}
             <View
                 style={{
@@ -29,8 +38,18 @@ const EditorTab: React.FC = () => {
                 }}>
                 <Text style={{ textAlign: 'center' }}>編集画面</Text>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#00F",
+        justifyContent: 'center',
+        alignContent: 'center',
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    },
+});
 
 export default EditorTab;

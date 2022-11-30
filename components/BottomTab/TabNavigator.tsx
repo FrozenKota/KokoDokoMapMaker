@@ -33,7 +33,7 @@ const TabNavigator: React.FC = () => {
                 },
                 tabBarActiveTintColor: 'tomato',
                 tabBarInactiveTintColor: 'gray',
-
+                headerShown: false,
             })}
         >
             <Tab.Screen name="Edit" component={EditorTab} />
