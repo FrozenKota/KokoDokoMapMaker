@@ -45,7 +45,7 @@ const SettingTab: React.FC<any> = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#00F",
+        backgroundColor: '#fff',
         justifyContent: 'center',
         alignContent: 'center',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
