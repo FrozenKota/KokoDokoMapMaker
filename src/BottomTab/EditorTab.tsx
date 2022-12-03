@@ -1,6 +1,6 @@
 import React, { ReactNode, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import iSpeedDial from "../Common/iSpeedDial"
+import ISpeedDial from "../Common/ISpeedDial"
 import { SpeedDial } from '@rneui/themed';
 
 import {
@@ -18,38 +18,30 @@ import Header from '../Common/Header';
 const EditorTab: React.FC = () => {
     const [open, setOpen] = React.useState(false);
     const navigation = useNavigation();
-    const right: ReactNode = useMemo(() => {
-        return (
-            <TouchableOpacity
-                style={{ padding: 10 }}
-                onPress={() => {
-                    navigation.goBack();
-                }}>
-                <Text>戻る😼</Text>
-            </TouchableOpacity>
-        )
-    }, [navigation]);
-
     return (
         <SafeAreaView style={styles.container}>
-            <SpeedDial
-                isOpen={open}
+            <ISpeedDial
+                size='small'
+                placement='right'
                 icon={{ name: 'edit', color: '#fff' }}
                 openIcon={{ name: 'close', color: '#fff' }}
-                onOpen={() => setOpen(!open)}
-                onClose={() => setOpen(!open)}
-            >
-                <SpeedDial.Action
-                    icon={{ name: 'add', color: '#fff' }}
-                    title="Add"
-                    onPress={() => console.log('Add Something')}
-                />
-                <SpeedDial.Action
-                    icon={{ name: 'delete', color: '#fff' }}
-                    title="Delete"
-                    onPress={() => console.log('Delete Something')}
-                />
-            </SpeedDial>
+                Actions={[
+                    { icon: { name: 'edit', color: '#fff' }, title: 'edit', onPress: () => { console.log('edit something') } },
+                    { icon: { name: 'edit', color: '#fff' }, title: 'erase', onPress: () => { console.log('edit something') } },
+                    { icon: { name: 'edit', color: '#fff' }, title: 'size', onPress: () => { console.log('change size') } },
+                ]}
+            />
+            <ISpeedDial
+                size='large'
+                placement='left'
+                icon={{ name: 'edit', color: '#fff' }}
+                openIcon={{ name: 'close', color: '#fff' }}
+                Actions={[
+                    { icon: { name: 'edit', color: '#fff' }, title: 'edit', onPress: () => { console.log('edit something') } },
+                    { icon: { name: 'edit', color: '#fff' }, title: 'erase', onPress: () => { console.log('edit something') } },
+                    { icon: { name: 'edit', color: '#fff' }, title: 'size', onPress: () => { console.log('change size') } },
+                ]}
+            />
         </SafeAreaView>
     );
 }

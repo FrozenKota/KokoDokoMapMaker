@@ -1,28 +1,58 @@
 import React from 'react';
-import { SpeedDial } from '@rneui/themed';
+import { View } from 'react-native';
+import { SpeedDial, Icon } from '@rneui/themed';
 
-const iSpeedDial = () => {
+type SpeedDialType = {
+    size: 'small' | 'large' | undefined,
+    placement: 'right' | 'left' | undefined,
+    icon:
+    {
+        name: string | undefined,
+        color: string | undefined,
+    },
+    openIcon: {
+        name: string | undefined,
+        color: string | undefined,
+    },
+    Actions: Array<{
+        icon: {
+            name: string | undefined,
+            color: string | undefined,
+        },
+        title: string,
+        onPress: () => void,
+    }>
+}
+
+const ISpeedDial = (props: SpeedDialType) => {
     const [open, setOpen] = React.useState(false);
+
     return (
         <SpeedDial
+            size={props.size}
+            placement={props.placement ? props.placement : 'right'}
             isOpen={open}
-            icon={{ name: 'edit', color: '#fff' }}
-            openIcon={{ name: 'close', color: '#fff' }}
+            icon={{
+                name: props.icon.name ? props.icon.name : 'edit',
+                color: props.icon.color ? props.icon.color : '#fff'
+            }}
+            openIcon={{
+                name: props.openIcon.name ? props.openIcon.name : 'close',
+                color: props.openIcon.color ? props.openIcon.name : '#fff'
+            }}
             onOpen={() => setOpen(!open)}
             onClose={() => setOpen(!open)}
         >
-            <SpeedDial.Action
-                icon={{ name: 'add', color: '#fff' }}
-                title="Add"
-                onPress={() => console.log('Add Something')}
-            />
-            <SpeedDial.Action
-                icon={{ name: 'delete', color: '#fff' }}
-                title="Delete"
-                onPress={() => console.log('Delete Something')}
-            />
+            {props.Actions.map((val, i) => (
+                <SpeedDial.Action
+                    key={i}
+                    icon={props.Actions[i].icon}
+                    title={props.Actions[i].title}
+                    onPress={() => { props.Actions[i].onPress() }}
+                />
+            ))}
         </SpeedDial>
     );
 };
 
-export default iSpeedDial;
+export default ISpeedDial;
