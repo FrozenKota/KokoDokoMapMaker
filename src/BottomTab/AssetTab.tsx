@@ -16,7 +16,7 @@ import Header from '../Common/Header';
 import Images from '../../Asset/asset';
 
 const { width, height } = Dimensions.get('window');
-const STATUSBAR_HEIGHT = (StatusBar.currentHeight ? StatusBar.currentHeight : 0);
+const STATUSBAR_HEIGHT = (Platform.OS === "android" && StatusBar.currentHeight != undefined) ? StatusBar.currentHeight : 0;
 const HEIGHT = height - STATUSBAR_HEIGHT;
 
 const AssetTab: React.FC = () => {
