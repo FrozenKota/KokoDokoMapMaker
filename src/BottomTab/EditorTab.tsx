@@ -10,7 +10,8 @@ import {
     Text,
     View,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import { dummyDB } from '../Common/dummyDB';
 import MapView, { Polyline, Circle } from 'react-native-maps';
@@ -50,6 +51,11 @@ const EditorTab: React.FC = () => {
             }
         }
     )
+    const [px1, setPx1] = React.useState(0);
+    const [py1, setPy1] = React.useState(0);
+    const [px2, setPx2] = React.useState(0);
+    const [py2, setPy2] = React.useState(0);
+
     const items = [];
     const navigation = useNavigation();
 
@@ -70,24 +76,25 @@ const EditorTab: React.FC = () => {
     }
     const onRegionChange = (e: any) => {
         const { latitude, latitudeDelta, longitude, longitudeDelta } = e;
-        setCornerRegion({
+        const cornerRegionTemp = {
             nw: {
-                latitude: latitude + latitudeDelta / 2,
+                latitude: latitude - latitudeDelta / 2,
                 longitude: longitude - longitudeDelta / 2,
             },
             ne: {
-                latitude: latitude + latitudeDelta / 2,
+                latitude: latitude - latitudeDelta / 2,
                 longitude: longitude + longitudeDelta / 2,
             },
             sw: {
-                latitude: latitude - latitudeDelta / 2,
+                latitude: latitude + latitudeDelta / 2,
                 longitude: longitude - longitudeDelta / 2,
             },
             se: {
-                latitude: latitude - latitudeDelta / 2,
+                latitude: latitude + latitudeDelta / 2,
                 longitude: longitude + longitudeDelta / 2,
             }
-        })
+        }
+        setCornerRegion(cornerRegionTemp);
 
         setRegion({
             latitude: e.latitude,
@@ -95,6 +102,22 @@ const EditorTab: React.FC = () => {
             longitude: e.longitude,
             longitudeDelta: e.longitudeDelta
         })
+        const imgSize = 1; // latitude 10deg, longitude 10deg
+
+        //setPx1((e.longitude - cornerRegionTemp.nw.longitude) * ((viewSize.width / e.longitudeDelta)));
+        //setPy1((e.latitude - cornerRegionTemp.nw.latitude) * ((viewSize.height / e.latitudeDelta)));
+        //setPx2((e.longitude - cornerRegionTemp.nw.longitude + imgSize) * ((viewSize.width / e.longitudeDelta)));
+        //setPy2((e.latitude - cornerRegionTemp.nw.latitude + imgSize) * ((viewSize.height / e.latitudeDelta)));
+        setPx1(((e.longitude - cornerRegionTemp.nw.longitude) * viewSize.width) / e.longitudeDelta);
+        setPy1(((e.latitude - cornerRegionTemp.nw.latitude) * viewSize.height) / e.latitudeDelta);
+        setPx2((e.longitude - cornerRegionTemp.nw.longitude + imgSize) * ((viewSize.width / e.longitudeDelta)));
+        setPy2((e.latitude - cornerRegionTemp.nw.latitude + imgSize) * ((viewSize.height / e.latitudeDelta)));
+        console.log('py1:', py1);
+        console.log('px1:', px1);
+        console.log('px2:', py2);
+        console.log('py2:', px2);
+        console.log('onReg:', e);
+        console.log('cornerReg:', cornerRegionTemp);
     }
 
     let i;
@@ -186,7 +209,6 @@ const EditorTab: React.FC = () => {
             strokeWidth={2}
         />
     )
-    let heightdummy = viewSize.height - 0;
 
     return (
         <SafeAreaView style={styles.container} onLayout={(e) => { onLayout(e) }}>
@@ -200,7 +222,8 @@ const EditorTab: React.FC = () => {
             >
                 {items}
             </MapView>
-            <View style={{ position: 'absolute', top: StatusBar.currentHeight, height: viewSize.height, width: 100, backgroundColor: 'red' }}></View>
+            <Image style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, width: 50, height: 50 }} resizeMode='contain' source={require('../../Asset/Asset1/yellow_tail_fish.png')} />
+            <View style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, height: 500, width: 10, backgroundColor: 'red' }}></View>
 
             <SpeedDial
                 isOpen={open}
