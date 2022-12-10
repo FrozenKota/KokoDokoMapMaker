@@ -75,23 +75,22 @@ const EditorTab: React.FC = () => {
         });
     }
     const onRegionChange = (e: any) => {
-        const { latitude, latitudeDelta, longitude, longitudeDelta } = e;
         const cornerRegionTemp = {
             nw: {
-                latitude: latitude - latitudeDelta / 2,
-                longitude: longitude - longitudeDelta / 2,
+                latitude: e.latitude + e.latitudeDelta / 2,
+                longitude: e.longitude - e.longitudeDelta / 2,
             },
             ne: {
-                latitude: latitude - latitudeDelta / 2,
-                longitude: longitude + longitudeDelta / 2,
+                latitude: e.latitude + e.latitudeDelta / 2,
+                longitude: e.longitude + e.longitudeDelta / 2,
             },
             sw: {
-                latitude: latitude + latitudeDelta / 2,
-                longitude: longitude - longitudeDelta / 2,
+                latitude: e.latitude - e.latitudeDelta / 2,
+                longitude: e.longitude - e.longitudeDelta / 2,
             },
             se: {
-                latitude: latitude + latitudeDelta / 2,
-                longitude: longitude + longitudeDelta / 2,
+                latitude: e.latitude - e.latitudeDelta / 2,
+                longitude: e.longitude + e.longitudeDelta / 2,
             }
         }
         setCornerRegion(cornerRegionTemp);
@@ -102,22 +101,14 @@ const EditorTab: React.FC = () => {
             longitude: e.longitude,
             longitudeDelta: e.longitudeDelta
         })
-        const imgSize = 1; // latitude 10deg, longitude 10deg
+        const imgSize = 20; // latitude 10deg, longitude 10deg
+        const imgLongitude = 139.6191623993218;
+        const imgLatitude = 35.13401895914322;
 
-        //setPx1((e.longitude - cornerRegionTemp.nw.longitude) * ((viewSize.width / e.longitudeDelta)));
-        //setPy1((e.latitude - cornerRegionTemp.nw.latitude) * ((viewSize.height / e.latitudeDelta)));
-        //setPx2((e.longitude - cornerRegionTemp.nw.longitude + imgSize) * ((viewSize.width / e.longitudeDelta)));
-        //setPy2((e.latitude - cornerRegionTemp.nw.latitude + imgSize) * ((viewSize.height / e.latitudeDelta)));
-        setPx1(((e.longitude - cornerRegionTemp.nw.longitude) * viewSize.width) / e.longitudeDelta);
-        setPy1(((e.latitude - cornerRegionTemp.nw.latitude) * viewSize.height) / e.latitudeDelta);
-        setPx2((e.longitude - cornerRegionTemp.nw.longitude + imgSize) * ((viewSize.width / e.longitudeDelta)));
-        setPy2((e.latitude - cornerRegionTemp.nw.latitude + imgSize) * ((viewSize.height / e.latitudeDelta)));
-        console.log('py1:', py1);
-        console.log('px1:', px1);
-        console.log('px2:', py2);
-        console.log('py2:', px2);
-        console.log('onReg:', e);
-        console.log('cornerReg:', cornerRegionTemp);
+        setPx1(((imgLongitude - cornerRegionTemp.nw.longitude) * viewSize.width) / e.longitudeDelta);
+        setPy1(viewSize.height * (cornerRegionTemp.nw.latitude - imgLatitude) / e.latitudeDelta);
+        setPx2(((imgLongitude - cornerRegionTemp.nw.longitude + imgSize) * viewSize.width) / e.longitudeDelta);
+        setPy2(viewSize.height * (cornerRegionTemp.nw.latitude - imgLatitude + imgSize) / e.latitudeDelta);
     }
 
     let i;
@@ -139,46 +130,6 @@ const EditorTab: React.FC = () => {
             />
         )
     }
-    items.push(
-        <Circle
-            key={i += 1}
-            center={{ latitude: cornerRegion.nw.latitude, longitude: cornerRegion.nw.longitude }}
-            radius={20000}
-            strokeWidth={2}
-            strokeColor='#F00'
-            fillColor='#0FF'
-        />
-    )
-    items.push(
-        <Circle
-            key={i += 1}
-            center={{ latitude: cornerRegion.ne.latitude, longitude: cornerRegion.ne.longitude }}
-            radius={20000}
-            strokeWidth={2}
-            strokeColor='#F00'
-            fillColor='#0FF'
-        />
-    )
-    items.push(
-        <Circle
-            key={i += 1}
-            center={{ latitude: cornerRegion.se.latitude, longitude: cornerRegion.se.longitude }}
-            radius={20000}
-            strokeWidth={2}
-            strokeColor='#F00'
-            fillColor='#0FF'
-        />
-    )
-    items.push(
-        <Circle
-            key={i += 1}
-            center={{ latitude: cornerRegion.sw.latitude, longitude: cornerRegion.sw.longitude }}
-            radius={20000}
-            strokeWidth={2}
-            strokeColor='#F00'
-            fillColor='#0FF'
-        />
-    )
     items.push(
         <Polyline
             key={i += 1}
@@ -222,8 +173,7 @@ const EditorTab: React.FC = () => {
             >
                 {items}
             </MapView>
-            <Image style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, width: 50, height: 50 }} resizeMode='contain' source={require('../../Asset/Asset1/yellow_tail_fish.png')} />
-            <View style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, height: 500, width: 10, backgroundColor: 'red' }}></View>
+            <Image style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, width: px2 - px1, height: py2 - py1 }} resizeMode='contain' source={require('../../Asset/Asset1/yellow_tail_fish.png')} />
 
             <SpeedDial
                 isOpen={open}
