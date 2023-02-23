@@ -16,6 +16,7 @@ import {
 import { dummyDB } from '../Common/dummyDB';
 import MapView, { Polyline, Circle } from 'react-native-maps';
 import GridLine from '../Editor/GridLine';
+import images from '../../Asset/asset';
 
 const { width, height } = Dimensions.get('window');
 const STATUSBAR_HEIGHT = (Platform.OS === "android" && StatusBar.currentHeight != undefined) ? StatusBar.currentHeight : 0;
@@ -31,26 +32,12 @@ const EditorTab: React.FC = () => {
         longitude: 0,
         longitudeDelta: 0
     });
-    const [cornerRegion, setCornerRegion] = React.useState(
-        {
-            nw: {
-                latitude: 0,
-                longitude: 0,
-            },
-            ne: {
-                latitude: 0,
-                longitude: 0,
-            },
-            sw: {
-                latitude: 0,
-                longitude: 0,
-            },
-            se: {
-                latitude: 0,
-                longitude: 0,
-            }
-        }
-    )
+    const [cornerRegion, setCornerRegion] = React.useState({
+        North_lat: 0,
+        East_log: 0,
+        West_log: 0,
+        South_lat: 0
+    })
     const [px1, setPx1] = React.useState(0);
     const [py1, setPy1] = React.useState(0);
     const [px2, setPx2] = React.useState(0);
@@ -76,22 +63,10 @@ const EditorTab: React.FC = () => {
     }
     const onRegionChange = (e: any) => {
         const cornerRegionTemp = {
-            nw: {
-                latitude: e.latitude + e.latitudeDelta / 2,
-                longitude: e.longitude - e.longitudeDelta / 2,
-            },
-            ne: {
-                latitude: e.latitude + e.latitudeDelta / 2,
-                longitude: e.longitude + e.longitudeDelta / 2,
-            },
-            sw: {
-                latitude: e.latitude - e.latitudeDelta / 2,
-                longitude: e.longitude - e.longitudeDelta / 2,
-            },
-            se: {
-                latitude: e.latitude - e.latitudeDelta / 2,
-                longitude: e.longitude + e.longitudeDelta / 2,
-            }
+            North_lat: e.latitude + e.latitudeDelta / 2,
+            East_log: e.longitude + e.longitudeDelta / 2,
+            West_log: e.longitude - e.longitudeDelta / 2,
+            South_lat: e.latitude - e.latitudeDelta / 2,
         }
         setCornerRegion(cornerRegionTemp);
 
@@ -101,41 +76,110 @@ const EditorTab: React.FC = () => {
             longitude: e.longitude,
             longitudeDelta: e.longitudeDelta
         })
-        const imgSize = 20; // latitude 10deg, longitude 10deg
+        const imgSize = 0.05; // latitude 10deg, longitude 10deg
         const imgLongitude = 139.6191623993218;
         const imgLatitude = 35.13401895914322;
 
-        setPx1(((imgLongitude - cornerRegionTemp.nw.longitude) * viewSize.width) / e.longitudeDelta);
-        setPy1(viewSize.height * (cornerRegionTemp.nw.latitude - imgLatitude) / e.latitudeDelta);
-        setPx2(((imgLongitude - cornerRegionTemp.nw.longitude + imgSize) * viewSize.width) / e.longitudeDelta);
-        setPy2(viewSize.height * (cornerRegionTemp.nw.latitude - imgLatitude + imgSize) / e.latitudeDelta);
+        setPx1(viewSize.width * Math.abs(imgLongitude - cornerRegionTemp.West_log) / e.longitudeDelta);
+        setPy1(viewSize.height * Math.abs(imgLatitude - cornerRegionTemp.North_lat) / e.latitudeDelta);
+        setPx2(viewSize.width * (Math.abs(imgLongitude - cornerRegionTemp.West_log) + imgSize) / e.longitudeDelta);
+        setPy2(viewSize.height * (Math.abs(imgLatitude - cornerRegionTemp.North_lat) + imgSize) / e.latitudeDelta);
     }
 
     let i;
-    for (i = -90; i <= 90; i += 1) {
-        items.push(
-            <Polyline
-                key={i}
-                coordinates={[
-                    { latitude: i, longitude: -180 },
-                    { latitude: i, longitude: 0 },
-                    { latitude: i, longitude: 179.9999999999 },
-                ]}
-                strokeColor="#F00" // fallback for when `strokeColors` is not supported by the map-provider
-                strokeColors={[
-                    '#000000',
-                    '#000000',
-                ]}
-                strokeWidth={strokeWidth}
-            />
-        )
-    }
+    i = 100;
     items.push(
         <Polyline
             key={i += 1}
             coordinates={[
-                { latitude: cornerRegion.nw.latitude, longitude: cornerRegion.nw.longitude },
-                { latitude: cornerRegion.se.latitude, longitude: cornerRegion.se.longitude },
+                { latitude: 0, longitude: 179.99 },
+                { latitude: 0, longitude: 0 },
+                { latitude: 0, longitude: -179.99 }
+            ]}
+            strokeColor="#F00" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeColors={[
+                '#000000',
+                '#000000',
+                '#000000',
+            ]}
+            strokeWidth={3}
+        />
+    )
+    items.push(
+        <Polyline
+            key={i += 1}
+            coordinates={[
+                { latitude: 89.99, longitude: 0 },
+                { latitude: 0, longitude: 0 },
+                { latitude: -89.99, longitude: 0 }
+            ]}
+            strokeColor="#F00" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeColors={[
+                '#000000',
+                '#000000',
+                '#000000',
+            ]}
+            strokeWidth={3}
+        />
+    )
+    items.push(
+        <Polyline
+            key={i += 1}
+            coordinates={[
+                { latitude: 89.99, longitude: 90 },
+                { latitude: 0, longitude: 90 },
+                { latitude: -89.99, longitude: 90 }
+            ]}
+            strokeColor="#F00" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeColors={[
+                '#000000',
+                '#000000',
+                '#000000',
+            ]}
+            strokeWidth={3}
+        />
+    )
+    items.push(
+        <Polyline
+            key={i += 1}
+            coordinates={[
+                { latitude: 89.99, longitude: -90 },
+                { latitude: 0, longitude: -90 },
+                { latitude: -89.99, longitude: -90 }
+            ]}
+            strokeColor="#F00" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeColors={[
+                '#000000',
+                '#000000',
+                '#000000',
+            ]}
+            strokeWidth={3}
+        />
+    )
+
+    items.push(
+        <Polyline
+            key={i += 1}
+            coordinates={[
+                { latitude: 89.99, longitude: 180 },
+                { latitude: 0, longitude: 180 },
+                { latitude: -89.99, longitude: 180 }
+            ]}
+            strokeColor="#F00" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeColors={[
+                '#000000',
+                '#000000',
+                '#000000',
+            ]}
+            strokeWidth={3}
+        />
+    )
+    items.push(
+        <Polyline
+            key={i += 1}
+            coordinates={[
+                { latitude: cornerRegion.North_lat, longitude: cornerRegion.West_log },
+                { latitude: cornerRegion.South_lat, longitude: cornerRegion.East_log },
             ]}
             strokeColor="#FF0" // fallback for when `strokeColors` is not supported by the map-provider
             strokeColors={[
@@ -149,8 +193,8 @@ const EditorTab: React.FC = () => {
         <Polyline
             key={i += 1}
             coordinates={[
-                { latitude: cornerRegion.ne.latitude, longitude: cornerRegion.ne.longitude },
-                { latitude: cornerRegion.sw.latitude, longitude: cornerRegion.sw.longitude },
+                { latitude: cornerRegion.North_lat, longitude: cornerRegion.East_log },
+                { latitude: cornerRegion.South_lat, longitude: cornerRegion.West_log },
             ]}
             strokeColor="#FF0" // fallback for when `strokeColors` is not supported by the map-provider
             strokeColors={[
@@ -173,7 +217,7 @@ const EditorTab: React.FC = () => {
             >
                 {items}
             </MapView>
-            <Image style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, width: px2 - px1, height: py2 - py1 }} resizeMode='contain' source={require('../../Asset/Asset1/yellow_tail_fish.png')} />
+            <Image style={{ position: 'absolute', top: StatusBar.currentHeight + py1, left: px1, width: px2 - px1, height: py2 - py1 }} resizeMode='contain' source={images['white_solt_water3']} />
 
             <SpeedDial
                 isOpen={open}
@@ -185,7 +229,7 @@ const EditorTab: React.FC = () => {
                 onClose={() => setOpen(!open)}
             >
                 {Actions.map((v, i) => (<SpeedDial.Action
-                    key={i}
+                    key={i + 10}
                     icon={{ name: Actions[i].icon.name, color: Actions[i].icon.color }}
                     title={Actions[i].title}
                     onPress={Actions[i].onPress}
