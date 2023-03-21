@@ -87,7 +87,12 @@ const EditorTab: React.FC = () => {
         let imgLatitude = dummyDB.mapData[value].latitude;
         let imgRatio = dummyDB.mapData[value].imgRatio;
 
-        let px1 = viewSize.width * Math.abs(imgLongitude - cornerRegion.West_log) / region.longitudeDelta;
+        let imgLongitudeDelta = imgLongitude - cornerRegion.West_log;
+        if (imgLongitudeDelta < 0) {
+            imgLongitudeDelta += 360;
+        }
+
+        let px1 = viewSize.width * imgLongitudeDelta / region.longitudeDelta;
         let py1 = viewSize.height * Math.abs(imgLatitude - cornerRegion.North_lat) / region.latitudeDelta;
         let px2 = viewSize.width * (Math.abs(imgLongitude - cornerRegion.West_log) + imgRatio) / region.longitudeDelta;
         let py2 = viewSize.height * (Math.abs(imgLatitude - cornerRegion.North_lat) + imgRatio) / region.latitudeDelta;
